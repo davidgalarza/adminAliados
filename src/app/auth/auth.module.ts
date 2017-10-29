@@ -11,6 +11,7 @@ import { LogoutComponent } from "./logout/logout.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { AlertService } from "./_services/alert.service";
 import { AuthenticationService } from "./_services/authentication.service";
+import { DatabaseService } from '../database/database.service';
 import { UserService } from "./_services/user.service";
 import { fakeBackendProvider } from "./_helpers/index";
 
@@ -30,6 +31,7 @@ import { fakeBackendProvider } from "./_helpers/index";
         AuthGuard,
         AlertService,
         AuthenticationService,
+        DatabaseService,
         UserService,
         // api backend simulation
         fakeBackendProvider,

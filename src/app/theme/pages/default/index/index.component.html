@@ -30,7 +30,7 @@
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
 								<h3 class="m-portlet__head-text">
-									Sales Stats
+									Estadisticas de ventas
 								</h3>
 							</div>
 						</div>
@@ -109,10 +109,10 @@
 									<div class="col">
 										<div class="m-widget15__item">
 											<span class="m-widget15__stats">
-												63%
+												{{earnsGrowth}}%
 											</span>
 											<span class="m-widget15__text">
-												Sales Grow
+												Crecimiento en ganancias
 											</span>
 											<div class="m--space-10"></div>
 											<div class="progress m-progress--sm">
@@ -123,10 +123,10 @@
 									<div class="col">
 										<div class="m-widget15__item">
 											<span class="m-widget15__stats">
-												54%
+												{{ordersGrowth}}%
 											</span>
 											<span class="m-widget15__text">
-												Orders Grow
+												Crecimiento en pedidos
 											</span>
 											<div class="m--space-10"></div>
 											<div class="progress m-progress--sm">
@@ -135,39 +135,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col">
-										<div class="m-widget15__item">
-											<span class="m-widget15__stats">
-												41%
-											</span>
-											<span class="m-widget15__text">
-												Profit Grow
-											</span>
-											<div class="m--space-10"></div>
-											<div class="progress m-progress--sm">
-												<div class="progress-bar bg-success" role="progressbar" style="width: 55%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="m-widget15__item">
-											<span class="m-widget15__stats">
-												79%
-											</span>
-											<span class="m-widget15__text">
-												Member Grow
-											</span>
-											<div class="m--space-10"></div>
-											<div class="progress m-progress--sm">
-												<div class="progress-bar bg-primary" role="progressbar" style="width: 60%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div class="m-widget15__desc">
-								* lorem ipsum dolor sit amet consectetuer sediat elit
+								* comparado con el mes anterior
 							</div>
 						</div>
 						<!--end::Widget 6-->
@@ -189,15 +159,15 @@
 							<div class="row m-row--no-padding align-items-center">
 								<div class="col">
 									<h3 class="m-widget1__title">
-										Member Profit
+										Ganancias
 									</h3>
 									<span class="m-widget1__desc">
-										Awerage Weekly Profit
+										Ganancias en este mes
 									</span>
 								</div>
 								<div class="col m--align-right">
 									<span class="m-widget1__number m--font-brand">
-										+$17,800
+										+${{earnMonth}}
 									</span>
 								</div>
 							</div>
@@ -206,15 +176,15 @@
 							<div class="row m-row--no-padding align-items-center">
 								<div class="col">
 									<h3 class="m-widget1__title">
-										Orders
+										Pedidos
 									</h3>
 									<span class="m-widget1__desc">
-										Weekly Customer Orders
+										Numero de pedidos este mes
 									</span>
 								</div>
 								<div class="col m--align-right">
 									<span class="m-widget1__number m--font-danger">
-										+1,800
+										+{{ordersMonth}}
 									</span>
 								</div>
 							</div>
@@ -305,7 +275,6 @@
 		</div>
 	</div>
 	<!--End::Main Portlet-->
-	
 	
 	
 </div>

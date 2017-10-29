@@ -5,7 +5,7 @@ new Chart($("#m_chart_sales_stats"), {
         ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Augosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
         datasets: [{
             label: "Ventas", borderColor: mUtil.getColor("brand"), borderWidth: 2, pointBackgroundColor: mUtil.getColor("brand"), backgroundColor: mUtil.getColor("accent"), pointHoverBackgroundColor: mUtil.getColor("danger"), pointHoverBorderColor: Chart.helpers.color(mUtil.getColor("danger")).alpha(.2).rgbString(),
-            data: [10, 20, 16, 18, 12, 40, 35, 30, 33, 34, 45, 40]
+            data: JSON.parse(localStorage.getItem('salesPerMonth'))
         }]
     }, options: {
         title: { display: !1 },
@@ -32,4 +32,5 @@ new Chart($("#m_chart_sales_stats"), {
             }
         }
     }
-})
+});
+console.log("In file", JSON.parse(localStorage.getItem('salesPerMonth')));
