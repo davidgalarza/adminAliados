@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { ThemeComponent } from './theme/theme.component';
 import { LayoutModule } from './theme/layouts/layout.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,11 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+// Services 
+import { StorageService } from './storage/storage.service';
+import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
+
+
 @NgModule({
     declarations: [
         ThemeComponent,
@@ -24,15 +30,22 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     imports: [
         LayoutModule,
         BrowserModule,
+        FormsModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         ThemeRoutingModule,
         AuthModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        SimpleNotificationsModule.forRoot()  
     ],
-    providers: [ScriptLoaderService, { provide: ErrorHandler, useClass: GlobalErrorHandler }],
-    bootstrap: [AppComponent]
+    providers: [ScriptLoaderService, StorageService, NotificationsService],
+    bootstrap: [AppComponent],
+    exports: [
+        FormsModule,
+        // External
+        SimpleNotificationsModule
+    ]
 })
 export class AppModule { }

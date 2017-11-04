@@ -13,9 +13,9 @@ export class AuthGuard implements CanActivate {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         return this._userService.verify().map(
             authInfo => {
-                if(authInfo != null && authInfo != undefined){
+                if (authInfo != null && authInfo != undefined) {
                     return true;
-                }else{
+                } else {
                     this._router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
                     return false;
                 }

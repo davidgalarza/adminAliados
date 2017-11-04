@@ -1,0 +1,290 @@
+<!-- BEGIN: Subheader -->
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title">
+				Crear nuevo producto
+			</h3>
+		</div>
+	</div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<!--begin::Portlet-->
+			<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+							<h3 class="m-portlet__head-text">
+								Formulario
+							</h3>
+						</div>
+					</div>
+				</div>
+				<!--begin::Form-->
+				<form #createForm (ngSubmit)="createProduct()" class="m-form m-form--fit" id="createForm">
+					<div class="m-portlet__body">
+							<div class="m-form__content">
+									<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
+										<div class="m-alert__icon">
+											<i class="la la-warning"></i>
+										</div>
+										<div class="m-alert__text">
+											Oh no! Existen errores en tu solicitud.
+										</div>
+										<div class="m-alert__close">
+											<button type="button" class="close" data-close="alert" aria-label="Close"></button>
+										</div>
+									</div>
+								</div>
+						<div class="m-form__section m-form__section--first">
+							<div class="m-form__heading">
+								<h3 class="m-form__heading-title">
+									1. Informacion :
+								</h3>
+							</div>
+							<div class="form-group m-form__group">
+								<label for="example_input_full_name">
+									Producto:
+								</label>
+								<input type="text" name="product" [(ngModel)]="product"class="form-control m-input" placeholder="Maximo 25 caracters">
+								<span class="m-form__help">
+									Ingrese el nombre del producto
+								</span>
+							</div>
+							<div class="form-group m-form__group">
+								<label>
+									Descripcion:
+								</label>
+								<input type="text"  name="description" [(ngModel)]="description" class="form-control m-input" placeholder="Maximo 40 caracteres">
+								<span class="m-form__help">
+									Descripcion corta del producto
+								</span>
+							</div>
+							<div class="form-group m-form__group">
+								<label>
+									Precio:
+								</label>
+								<div class="m-input-icon m-input-icon--left">
+									<input type="number" class="form-control m-input" name="price" [(ngModel)]="price" placeholder="Solo numeros">
+									<span class="m-input-icon__icon m-input-icon__icon--left">
+										<span>
+											<i class="la 	la-dollar"></i>
+										</span>
+									</span>
+								</div>
+								<span class="m-form__help">
+									Precio del producto
+								</span>
+							</div>
+							<div class="form-group m-form__group">
+									<label for="exampleSelect1">
+										Menu
+									</label>
+									<select class="form-control m-input" id="exampleSelect1" name="menu" [(ngModel)]="menu">
+											<option *ngFor="let menu of menus" [value]="menu.toLowerCase()">{{menu.toUpperCase()}}</option>
+									</select>
+								</div>
+
+						</div>
+						<div class="m-form__seperator m-form__seperator--dashed"></div>
+						<div class="m-form__section m-form__section--last">
+							<div class="m-form__heading">
+								<h3 class="m-form__heading-title">
+									2. Graficos:
+								</h3>
+							</div>
+							<div class="form-group m-form__group">
+								<label for="exampleInputEmail1">
+									Buscar archivo
+								</label>
+								<div></div>
+								<label class="custom-file">
+									<input type="file" id="file2" class="custom-file-input" placeholder="Seleccionar" (change)="detectImage($event)" name="image">
+									<span class="custom-file-control"></span>
+								</label>
+							</div>
+
+
+						</div>
+						<div class="m-form__seperator m-form__seperator--dashed"></div>
+						<div class="m-form__section m-form__section--last">
+							<div class="m-form__heading">
+								<h3 class="m-form__heading-title">
+									3. Opciones:
+								</h3>
+							</div>
+							<div class="m-form__group form-group row">
+								<label class="col-3 col-form-label">
+									Numero de opciones
+								</label>
+								<div class="col-9">
+									<div class="m-radio-inline">
+										<label (click)="createQuetions(0)" class="m-radio">
+											<input (click)="createQuetions(0)" type="radio" name="example_8" value="0"> Sin preguntas
+											<span></span>
+										</label>
+										<label (click)="createQuetions(1)" class="m-radio">
+											<input (click)="createQuetions(1)" type="radio" name="example_8" value="1"> 1 pregunta
+											<span></span>
+										</label>
+										<label (click)="createQuetions(2)" class="m-radio">
+											<input (click)="createQuetions(2)" type="radio" name="example_8" value="2"> 2 preguntas
+											<span></span>
+										</label>
+										<label class="m-radio" (click)="createQuetions(3)">
+											<input (click)="createQuetions(3)" type="radio" name="example_8" value="3"> 3 preguntas
+											<span></span>
+										</label>
+									</div>
+									<span class="m-form__help">
+										Por defecto sin preguntas
+									</span>
+								</div>
+							</div>
+							<div *ngFor="let quetion of questions;let index = index;trackBy:trackByIndex;">
+								<div class="m-form__heading">
+									<h3 class="m-form__heading-title">
+										Opcion {{index+1}}
+									</h3>
+								</div>
+								<div class="form-group m-form__group">
+									<label>
+										Pregunta:
+									</label>
+									<input type="text"  name="question" [(ngModel)]="questions[index].question" class="form-control m-input" placeholder="Maximo 70 caracteres">
+									<span class="m-form__help">
+										Que opcion le das al cliente
+									</span>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Opcion:
+											</label>
+											<input type="text" name="answer1" [(ngModel)]="questions[index].option1.answer" class="form-control m-input" placeholder="Maximo 40 caracteres">
+										</div>
+									</div>
+
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Precio:
+											</label>
+											<div class="m-input-icon m-input-icon--left">
+												<input type="number" name="price" [(ngModel)]="questions[index].option1.price"  class="form-control m-input" placeholder="Le agrega valor?">
+												<span class="m-input-icon__icon m-input-icon__icon--left">
+													<span>
+														<i class="la 	la-dollar"></i>
+													</span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Opcion:
+											</label>
+											<input type="text"  name="answer2" [(ngModel)]="questions[index].option2.answer" class="form-control m-input" placeholder="Maximo 40 caracteres">
+										</div>
+									</div>
+
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Precio:
+											</label>
+											<div class="m-input-icon m-input-icon--left">
+												<input type="number"  name="price" [(ngModel)]="questions[index].option2.price" class="form-control m-input" placeholder="Le agrega valor?">
+												<span class="m-input-icon__icon m-input-icon__icon--left">
+													<span>
+														<i class="la 	la-dollar"></i>
+													</span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Opcion:
+											</label>
+											<input type="text"  name="answer3" [(ngModel)]="questions[index].option3.answer" class="form-control m-input" placeholder="Maximo 40 caracteres">
+										</div>
+									</div>
+
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Precio:
+											</label>
+											<div class="m-input-icon m-input-icon--left">
+												<input type="number"  name="price" [(ngModel)]="questions[index].option3.price" class="form-control m-input" placeholder="Le agrega valor?">
+												<span class="m-input-icon__icon m-input-icon__icon--left">
+													<span>
+														<i class="la 	la-dollar"></i>
+													</span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Opcion:
+											</label>
+											<input type="text"  name="answer4" [(ngModel)]="questions[index].option4.answer" class="form-control m-input" placeholder="Maximo 40 caracteres">
+										</div>
+									</div>
+
+									<div class="col-6">
+										<div class="form-group m-form__group">
+											<label>
+												Precio:
+											</label>
+											<div class="m-input-icon m-input-icon--left">
+												<input type="number"  name="price" [(ngModel)]="questions[index].option4.price" class="form-control m-input" placeholder="Le agrega valor?">
+												<span class="m-input-icon__icon m-input-icon__icon--left">
+													<span>
+														<i class="la 	la-dollar"></i>
+													</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+						<div class="m-form__actions m-form__actions--solid">
+							<button type="submit" class="btn btn-success">
+								Crear
+							</button>
+							<button type="reset" class="btn btn-secondary">
+								Cancelar
+							</button>
+						</div>
+
+					</div>
+					
+				</form>
+				<!--end::Form-->
+				
+			</div>
+			
+			<!--end::Portlet-->
+		</div>
+		
+	</div>
+
+</div>
+<simple-notifications [options]="options"></simple-notifications>

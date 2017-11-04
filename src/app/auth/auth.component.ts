@@ -47,16 +47,16 @@ export class AuthComponent implements OnInit {
 
     signin() {
         this.loading = true;
-        this._authService.login(this.model.email, this.model.password).then(user=>{
-            console.log("Usuario",user);
+        this._authService.login(this.model.email, this.model.password).then(user => {
+            console.log("Usuario", user);
             console.log(this.returnUrl);
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this._router.navigate([this.returnUrl]).then(ss=>{
+            this._router.navigate([this.returnUrl]).then(ss => {
                 console.log(ss);
-            }).catch(error=>{
+            }).catch(error => {
                 console.log(error)
             });
-        }).catch(err=>{
+        }).catch(err => {
             this.showAlert('alertSignin');
             this._alertService.error(err.message);
             this.loading = false;
@@ -83,13 +83,13 @@ export class AuthComponent implements OnInit {
 
     forgotPass() {
         this.loading = true;
-        this._userService.forgotPassword(this.model.email).then(ss=>{
+        this._userService.forgotPassword(this.model.email).then(ss => {
             this.showAlert('alertSignin');
             this._alertService.success('Cool! Se enviaron instrucciones a tu correo.', true);
             this.loading = false;
             LoginCustom.displaySignInForm();
             this.model = {};
-        }).catch(error=>{
+        }).catch(error => {
             this.showAlert('alertForgotPass');
             this._alertService.error(error);
             this.loading = false;

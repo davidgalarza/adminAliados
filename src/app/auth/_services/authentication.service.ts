@@ -25,8 +25,9 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        return this.auth.auth.signOut();
     }
-    getUser(){
+    getUser() {
         return this.auth.auth.currentUser;
     }
 }

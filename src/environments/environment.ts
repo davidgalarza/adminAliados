@@ -13,4 +13,4 @@ export const environment = {
         storageBucket: "atiempo-5533e.appspot.com",
         messagingSenderId: "212855483806"
     }
-  };
+};

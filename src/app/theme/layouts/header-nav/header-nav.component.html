@@ -929,7 +929,7 @@
 							<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 								<a href="#" class="m-nav__link m-dropdown__toggle">
 									<span class="m-topbar__userpic">
-										<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+										<img src={{logoUrl}} class="m--img-rounded m--marginless m--img-centered" alt=""/>
 									</span>
 									<span class="m-topbar__username m--hide">
 										Nick
@@ -941,14 +941,14 @@
 										<div class="m-dropdown__header m--align-center" style="background: url(./assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
 											<div class="m-card-user m-card-user--skin-dark">
 												<div class="m-card-user__pic">
-													<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+													<img src={{logoUrl}} class="m--img-rounded m--marginless" alt=""/>
 												</div>
 												<div class="m-card-user__details">
 													<span class="m-card-user__name m--font-weight-500">
-														Mark Andre
+														{{shopName}}
 													</span>
 													<a href="" class="m-card-user__email m--font-weight-300 m-link">
-														mark.andre@gmail.com
+														{{mail}}
 													</a>
 												</div>
 											</div>
@@ -962,16 +962,16 @@
 														</span>
 													</li>
 													<li class="m-nav__item">
-														<a routerLink="/header/profile" class="m-nav__link">
+														<a routerLink="/profile" class="m-nav__link">
 															<i class="m-nav__link-icon flaticon-profile-1"></i>
 															<span class="m-nav__link-title">
 																<span class="m-nav__link-wrap">
 																	<span class="m-nav__link-text">
-																		My Profile
+																		Mi perfil
 																	</span>
-																	<span class="m-nav__link-badge">
+																	<span *ngIf="!hasLogo" class="m-nav__link-badge">
 																		<span class="m-badge m-badge--success">
-																			2
+																			1
 																		</span>
 																	</span>
 																</span>
@@ -1013,8 +1013,8 @@
 													</li>
 													<li class="m-nav__separator m-nav__separator--fit"></li>
 													<li class="m-nav__item">
-														<a routerLink="/snippets/pages/user/login-1" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" routerLink="/logout">
-															Logout
+														<a (click)="logout()"class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+															Salir
 														</a>
 													</li>
 												</ul>

@@ -10,6 +10,30 @@ const routes: Routes = [
         "canActivate": [AuthGuard],
         "children": [
             {
+                "path": "newproduct",
+                "loadChildren": ".\/pages\/default\/newproduct\/newproduct.module#NewproductModule"
+            },
+            {
+                "path": "products",
+                "loadChildren": ".\/pages\/default\/products\/products.module#ProductsModule"
+            },
+            {
+                "path": "edit/:id",
+                "loadChildren": ".\/pages\/default\/edit\/edit.module#EditModule"
+            },
+            {
+                "path": "menus",
+                "loadChildren": ".\/pages\/default\/menus\/menus.module#MenusModule"
+            },
+            {
+                "path": "profile",
+                "loadChildren": ".\/pages\/default\/profile\/profile.module#ProfileModule"
+            },
+            {
+                "path": "orders",
+                "loadChildren": ".\/pages\/default\/orders\/orders.module#OrdersModule"
+            },
+            {
                 "path": "angular\/ng-bootstrap",
                 "loadChildren": ".\/pages\/default\/angular\/ng-bootstrap\/ng-bootstrap.module#NgBootstrapModule"
             },

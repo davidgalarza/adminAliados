@@ -1,0 +1,599 @@
+<!-- BEGIN: Subheader -->
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<h3 class="m-subheader__title">
+				Mi perfil
+			</h3>
+		</div>
+		<div>
+			<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover"
+			 aria-expanded="true">
+				<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+					<i class="la la-plus m--hide"></i>
+					<i class="la la-ellipsis-h"></i>
+				</a>
+				<div class="m-dropdown__wrapper">
+					<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+					<div class="m-dropdown__inner">
+						<div class="m-dropdown__body">
+							<div class="m-dropdown__content">
+								<ul class="m-nav">
+									<li class="m-nav__section m-nav__section--first m--hide">
+										<span class="m-nav__section-text">
+											Quick Actions
+										</span>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-share"></i>
+											<span class="m-nav__link-text">
+												Activity
+											</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-chat-1"></i>
+											<span class="m-nav__link-text">
+												Messages
+											</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-info"></i>
+											<span class="m-nav__link-text">
+												FAQ
+											</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+											<span class="m-nav__link-text">
+												Support
+											</span>
+										</a>
+									</li>
+									<li class="m-nav__separator m-nav__separator--fit"></li>
+									<li class="m-nav__item">
+										<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+											Submit
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="m-portlet m-portlet--full-height">
+				<div class="m-portlet__body">
+					<div class="m-card-profile">
+						<div class="m-card-profile__title m--hide">
+							Tu perfil
+						</div>
+						<div class="m-card-profile__pic">
+							<div class="m-card-profile__pic-wrapper">
+								<img src={{logoUrl}} alt="" />
+							</div>
+						</div>
+						<div class="m-card-profile__details">
+							<span class="m-card-profile__name">
+								{{shop.name}}
+							</span>
+							<a href="" class="m-card-profile__email m-link">
+								{{mail}}
+							</a>
+						</div>
+					</div>
+
+					<div class="m-portlet__body-separator"></div>
+					<div class="m-widget1 m-widget1--paddingless">
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Ganancias
+									</h3>
+									<span class="m-widget1__desc">
+										Ganancias en este mes
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-brand">
+										+${{earnMonth}}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Pedidos
+									</h3>
+									<span class="m-widget1__desc">
+										Numero de pedidos este mes
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-danger">
+										+{{ordersMonth}}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="m-widget1__item">
+							<div class="row m-row--no-padding align-items-center">
+								<div class="col">
+									<h3 class="m-widget1__title">
+										Venta
+									</h3>
+									<span class="m-widget1__desc">
+										Valor promedio de pedido
+									</span>
+								</div>
+								<div class="col m--align-right">
+									<span class="m-widget1__number m--font-success">
+										+${{orderValue.toFixed(2)}}
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="m-portlet m-portlet--full-height m-portlet--tabs">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-tools">
+						<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+							<li class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab" (click)="loadMap(false)">
+									<i class="flaticon-share m--hide"></i>
+									Información
+								</a>
+							</li>
+							<li class="nav-item m-tabs__item">
+								<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab" (click)="loadMap(false)">
+									Horarios
+								</a>
+							</li>
+							<li class="nav-item m-tabs__item" (click)="loadMap(true)">
+								<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab" >
+									Ubicación
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="m-portlet__head-tools">
+						<ul class="m-portlet__nav">
+							<li class="m-portlet__nav-item">
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover"
+								 aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first">
+															<span class="m-nav__section-text">
+																Quick Actions
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Create Post
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Send Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-multimedia-2"></i>
+																<span class="m-nav__link-text">
+																	Upload File
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__section">
+															<span class="m-nav__section-text">
+																Useful Links
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
+														<li class="m-nav__item m--hide">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane active" id="m_user_profile_tab_1">
+						<form #profileForm (ngSubmit)="updateData()" class="m-form m-form--fit m-form--label-align-right" id="profileForm">
+							<div class="m-portlet__body">
+								<div class="form-group m-form__group m--margin-top-10 m--hide">
+									<div class="alert m-alert m-alert--default" role="alert">
+										The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional
+										classes.
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											1. Representante
+										</h3>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Nombre
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="billing.name" name="billingName">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Cedula
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="billing.ci" name="ci">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Telefono
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="billing.phone" name="billingPhone">
+
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Dirección
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="billing.address" name="billingAddress">
+										<span class="m-form__help">
+											Con los datos proporcionados se realizara la facuración.
+										</span>
+									</div>
+								</div>
+								<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+								<div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											2. Negocio
+										</h3>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Nombre
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="shopName" name="shopName">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Descripción
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" [(ngModel)]="shopDescription" name="shopDescription">
+									</div>
+								</div>
+								<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+								<div class="form-group m-form__group row">
+									<div class="col-10 ml-auto">
+										<h3 class="m-form__section">
+											3. Imagenes
+										</h3>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Logo
+									</label>
+									<div class="col-7">
+										<input type="file" id="file1" class="custom-file-input" placeholder="Seleccionar" (change)="detectImage($event)" name="logo"
+										 style="opacity:1">
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Banner
+									</label>
+									<div class="col-7">
+										<input type="file" id="file2" class="custom-file-input" placeholder="Seleccionar" (change)="detectImage2($event)" name="banner"
+										 style="opacity:1">
+									</div>
+								</div>
+
+							</div>
+							<div class="m-portlet__foot m-portlet__foot--fit">
+								<div class="m-form__actions">
+									<div class="row">
+										<div class="col-2"></div>
+										<div class="col-7">
+											<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+												Guardar cambios
+											</button>
+											&nbsp;&nbsp;
+											<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+												Cancelar
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="m_user_profile_tab_2">
+						<!--begin::Portlet-->
+						<div class="m-portlet">
+							<!--begin::Form-->
+							<form #timeForm (ngSubmit)="updateTime()" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+								<div class="m-portlet__body">
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Lunes:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[0].work" name="work0"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open0" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[0].open"
+											 name="open0">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close0" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[0].close"
+											 name="close0">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Martes:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[1].work" name="work1"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open1" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[1].open"
+											 name="open1">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close1" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[1].close"
+											 name="close1">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Miercoles:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[2].work" name="work2"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open2" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[2].open"
+											 name="open2">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close2" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[2].close"
+											 name="close2">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Jueves:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[3].work" name="work3"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open3" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[3].open"
+											 name="open3">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close3" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[3].close"
+											 name="close3">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Viernes:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[4].work" name="work4"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open4" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[4].open"
+											 name="open4">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close4" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[4].close"
+											 name="close4">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Sabado:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[5].work" name="work5"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open5" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[5].open"
+											 name="open5">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close5" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[5].close"
+											 name="close5">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+									<div class="form-group m-form__group row">
+										<label class="col-lg-2 col-form-label">
+											Domingo:
+										</label>
+										<label class="col-lg-2 m-checkbox m-checkbox--state-brand" style="margin-top:0.65rem">
+											<input type="checkbox" [(ngModel)]="attention[6].work" name="work6"> Abierto
+											<span></span>
+										</label>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="open6" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[6].open"
+											 name="open6">
+											<span class="m-form__help">
+												Hora de apertura
+											</span>
+										</div>
+										<div class="col-lg-3">
+											<input type='text' class="form-control pikerTimeProfile" id="close6" placeholder="Seleccionar hora" readonly [(ngModel)]="attention[6].close"
+											 name="close6">
+											<span class="m-form__help">
+												Hora de cierre
+											</span>
+										</div>
+									</div>
+
+
+								</div>
+								<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+									<div class="m-form__actions m-form__actions--solid">
+										<div class="row">
+											<div class="col-lg-2"></div>
+											<div class="col-lg-10">
+												<button type="submit" class="btn btn-success">
+													Actualizar
+												</button>
+												<button class="btn btn-secondary" href="#m_user_profile_tab_1">
+													Cancel
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!--end::Form-->
+						</div>
+						<!--end::Portlet-->
+					</div>
+					<div class="tab-pane active" id="m_user_profile_tab_3"></div>
+					<agm-map *ngIf="load" [zoom]="zoom" [latitude]="lat" [longitude]="lng" (centerChange)="changeCenter($event)" style="height: 400px; width: 100%;">
+						<agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+					</agm-map>
+
+
+					<div  *ngIf="load" style="margin: 20px 0px;text-align: center;"class="m-form__actions">
+							<div class="row">
+								<div class="col-2"></div>
+								<div class="col-7">
+									<button class="btn btn-accent m-btn m-btn--air m-btn--custom" type="submit" (click)="setLocation()">
+										Guardar cambios
+									</button>
+									&nbsp;&nbsp;
+									<button class="btn btn-secondary m-btn m-btn--air m-btn--custom" type="reset">
+										Cancelar
+									</button>
+								</div>
+							</div>
+						</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
