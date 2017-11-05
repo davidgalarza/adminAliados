@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/co
 import { Helpers } from '../../../helpers';
 import { AuthenticationService } from '../../../auth/_services/authentication.service';
 import { DatabaseService } from '../../../database/database.service';
+import { FcmService } from '../../../fcm/fcm.service';
 import { Router } from '@angular/router';
 
 declare let mLayout: any;
@@ -17,7 +18,7 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
     mail: string ="";
     bannerUrl: string ="";
     hasLogo: boolean = true;
-    constructor(private auth: AuthenticationService, private db: DatabaseService, private router: Router) {
+    constructor(private auth: AuthenticationService, private db: DatabaseService, private router: Router, private fcm: FcmService) {
         let shopData: any;
         this.uid = this.auth.getUser().uid;
         this.mail = this.auth.getUser().email;
@@ -32,6 +33,14 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
                 this.logoUrl = "./assets/app/media/img/users/profile.png";
             }
         });
+        this.fcm.getFCMP();
+        this.fcm.getFCM().onMessage(payload=>{
+            console.log("Notificacion", payload);
+        });
+        this.fcm.getFCM().onTokenRefresh(()=>{
+            console.log("Refrescado")
+            this.fcm.getFCMP();
+          });
     }
     ngOnInit() {
 

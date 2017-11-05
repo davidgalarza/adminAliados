@@ -76,4 +76,10 @@ export class DatabaseService {
         this.db.database.ref().child('commerces').child(uid).child('lat').set(lat);
         this.db.database.ref().child('commerces').child(uid).child('lng').set(lng);
       }
+      getOrder(id:string){
+        return this.db.database.ref().child('orders').child(id);
+      }
+      setOrderStatus(id:string, status: string){
+        this.db.database.ref().child('orders').child(id).child('status').set(status);
+      }
 }

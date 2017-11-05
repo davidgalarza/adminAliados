@@ -20,7 +20,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Services 
 import { StorageService } from './storage/storage.service';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
-
+import { FcmService } from './fcm/fcm.service';
 
 @NgModule({
     declarations: [
@@ -38,14 +38,14 @@ import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifi
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
-        SimpleNotificationsModule.forRoot()  
+        SimpleNotificationsModule.forRoot(),
     ],
-    providers: [ScriptLoaderService, StorageService, NotificationsService],
+    providers: [ScriptLoaderService, StorageService, NotificationsService, FcmService],
     bootstrap: [AppComponent],
     exports: [
         FormsModule,
         // External
-        SimpleNotificationsModule
+        SimpleNotificationsModule,
     ]
 })
 export class AppModule { }

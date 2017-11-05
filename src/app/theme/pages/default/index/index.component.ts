@@ -46,13 +46,13 @@ export class IndexComponent implements OnInit, AfterViewInit {
             this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
                 'assets/app/js/index.js');
             if (this.salesPerMonth[moment().months() - 1] != 0) {
-                this.earnsGrowth = (this.salesPerMonth[moment().months()] - this.salesPerMonth[moment().months() - 1]) / this.salesPerMonth[moment().months() - 1];
+                this.earnsGrowth = Math.ceil(((this.salesPerMonth[moment().months()] - this.salesPerMonth[moment().months() - 1]) / this.salesPerMonth[moment().months() - 1])*100);
             } else {
                 this.earnsGrowth = 100;
             }
 
             if (this.orderPerMoth[moment().months() - 1] != 0) {
-                this.ordersGrowth = (this.orderPerMoth[moment().months()] - this.orderPerMoth[moment().months() - 1]) / this.salesPerMonth[moment().months() - 1];
+                this.ordersGrowth = Math.ceil(((this.orderPerMoth[moment().months()] - this.orderPerMoth[moment().months() - 1]) / this.salesPerMonth[moment().months() - 1])*100);
             } else {
                 this.ordersGrowth = 100;
             }

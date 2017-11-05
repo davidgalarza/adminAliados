@@ -17,8 +17,27 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     orders: Array<any> = [];
     firstTime: boolean = true;
     datatable: any;
+    shop:any ={
+        billing:{address: ""}
+    };
+    selectedOrder: any = {
+        billing:{
+            name: '',
+            ci:'',
+            address: ''
+        },
+        cart: [
+            {cant: 1, name: "Un productos", options: [], price: 21, product: "-KxfVRW8mhk28LkTdr1T"}
+        ],
+        products_total: 6,
+        status: 'pending'
+    };
+    selectedId: string;
     constructor(private _script: ScriptLoaderService,private elRef: ElementRef, private db: DatabaseService, private auth: AuthenticationService) {
         this.uid = this.auth.getUser().uid;
+        this.db.getShop(this.uid).on('value', (ss)=>{
+            this.shop = ss.val();
+        });
         moment.locale('es');
         this.db.getOrders(this.uid).snapshotChanges().subscribe(ss => {
             this.prepareOrdersData(ss).then(orders => {
@@ -133,7 +152,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
                 overflow: "visible",
                 textAlign: "center",
                 template: function (t) {
-                    return '<a data-cust-id="' + t.$key + '"class="viewB m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">\t\t\t\t\t\t\t<i class="la la-eye"></i>\t\t\t\t\t\t</a>'
+                    return '<a data-cust-id="' + t.$key + '" data-toggle="modal" data-target="#m_modal_4" class="viewB m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">\t\t\t\t\t\t\t<i class="la la-eye"></i>\t\t\t\t\t\t</a>'
                 }
             }],
 
@@ -226,6 +245,21 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         $(this.elRef.nativeElement).find(".viewB").click((e) => {
             let id = $(e.currentTarget).data('cust-id');
             console.log(id);
+            this.selectedId = id.substring(1);
+            this.getOrder(id.substring(1));
         });
+    }
+    getOrder(id:string){
+        this.db.getOrder(id).on('value',(ss)=>{
+            this.selectedOrder = ss.val();
+            this.selectedOrder.$key = ss.key;
+            console.log(this.selectedOrder);
+        });
+    }
+    accept(){
+        this.db.setOrderStatus(this.selectedId,'accepted');
+    }
+    refuse(){
+        this.db.setOrderStatus(this.selectedId,'refused');
     }
 }
