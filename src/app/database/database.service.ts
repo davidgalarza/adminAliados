@@ -82,4 +82,10 @@ export class DatabaseService {
       setOrderStatus(id:string, status: string){
         this.db.database.ref().child('orders').child(id).child('status').set(status);
       }
+      getWorkOfDay(uid: string, day: string){
+        return this.db.database.ref().child('commerces').child(uid).child('attention').child(day);
+    }
+    setWorkOfDay(uid: string, day: string, work: boolean){
+        this.db.database.ref().child('commerces').child(uid).child('attention').child(day).child('work').set(work);
+    }
 }

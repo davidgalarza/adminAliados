@@ -20,12 +20,18 @@ export class IndexComponent implements OnInit, AfterViewInit {
     earnMonth = 0;
     ordersMonth = 0;
     orderValue = 0;
+    active: boolean = true;
+    day: number
     constructor(private _script: ScriptLoaderService, private auth: AuthenticationService, private db: DatabaseService) {
-
-
+        let actualDate = moment().day();
+        if(actualDate == 0){
+            this.day = 6;
+        }else{
+            this.day = actualDate -1;
+        }
     }
     ngOnInit() {
-
+   
     }
     ngAfterViewInit() {
         this.uid = this.auth.getUser().uid;
@@ -61,6 +67,17 @@ export class IndexComponent implements OnInit, AfterViewInit {
             this.orderValue = this.earnMonth / this.ordersMonth;
 
         });
+        this.db.getWorkOfDay(this.uid, this.day.toString()).on('value', (ss)=>{
+            this.active = ss.val().work;
+        });
+
+    }
+    changeState(){
+        setTimeout(()=>{
+            console.log(this.active);
+            
+            this.db.setWorkOfDay(this.uid, this.day.toString(), this.active);
+        },100)
 
     }
 

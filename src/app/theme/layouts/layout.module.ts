@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HrefPreventDefaultDirective } from '../../_directives/href-prevent-default.directive';
 import { UnwrapTagDirective } from '../../_directives/unwrap-tag.directive';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { UnwrapTagDirective } from '../../_directives/unwrap-tag.directive';
     imports: [
         CommonModule,
         RouterModule,
+        MomentModule
     ]
 })
 export class LayoutModule {
