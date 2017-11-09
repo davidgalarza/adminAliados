@@ -70,11 +70,11 @@ export class DatabaseService {
     }
     setAttention(uid:string, horary:Array<any>){
         console.log(horary);
-        this.db.database.ref().child('commerces').child(uid).child('attention').set(horary);
+        return this.db.database.ref().child('commerces').child(uid).child('attention').set(horary);
       }
       setLocation(uid:string, lat:number, lng:number){
         this.db.database.ref().child('commerces').child(uid).child('lat').set(lat);
-        this.db.database.ref().child('commerces').child(uid).child('lng').set(lng);
+        return this.db.database.ref().child('commerces').child(uid).child('lng').set(lng);
       }
       getOrder(id:string){
         return this.db.database.ref().child('orders').child(id);
@@ -87,5 +87,23 @@ export class DatabaseService {
     }
     setWorkOfDay(uid: string, day: string, work: boolean){
         this.db.database.ref().child('commerces').child(uid).child('attention').child(day).child('work').set(work);
+    }
+    getCities(){
+        return this.db.list('/cities').snapshotChanges();
+    }
+    createCommerce(uid: string, name: string, category: string, city: string){
+        return this.db.database.ref().child('commerces').child(uid).set({
+            name: name,
+            category: category,
+            city: city,
+            disabled: true,
+            status: "registered"
+        })
+    }
+    setStatus(uid:string, status:string){
+        return this.db.database.ref().child('commerces').child(uid).child('status').set(status);
+    }
+    setDisabled(uid: string, disabled: boolean){
+        this.db.database.ref().child('commerces').child(uid).child('disabled').set(disabled);
     }
 }

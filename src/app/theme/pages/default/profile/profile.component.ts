@@ -3,6 +3,7 @@ import { Helpers } from '../../../../helpers';
 import { AuthenticationService } from '../../../../auth/_services/authentication.service';
 import { DatabaseService } from '../../../../database/database.service';
 import { StorageService } from '../../../../storage/storage.service';
+import { Router } from '@angular/router';
 import * as moment from 'moment/moment';
 
 declare var $: any;
@@ -82,7 +83,7 @@ export class ProfileComponent implements OnInit {
         zoom: number = 16;
         load: boolean = false;
     
-    constructor(private auth: AuthenticationService, private db: DatabaseService, private storage: StorageService) {
+    constructor(private auth: AuthenticationService, private db: DatabaseService, private storage: StorageService, private router: Router) {
         this.uid = this.auth.getUser().uid;
         this.mail = this.auth.getUser().email;
         this.db.getShop(this.uid).on('value', shop=>{
@@ -200,7 +201,14 @@ export class ProfileComponent implements OnInit {
                     console.log("Se actualizo");
                     notify.update("message", "<strong>Actualizado</strong> exitosamente.");
                     notify.update("type", "success"); 
-                    notify.update("progress", 100) 
+                    notify.update("progress", 100);
+                    if(this.shop.status != 'approved' && this.shop.status != 'showed'){
+                        $('#m_user_profile_tab_1').removeClass('active');
+                        $('#tab1Ref').removeClass('active');
+                        $('#m_user_profile_tab_2').addClass('active');
+                        $('#tab2Ref').addClass('active');
+                        window.scrollTo(0, 0);
+                    }
                 });
             })
            
@@ -264,7 +272,12 @@ export class ProfileComponent implements OnInit {
     // Tim Config
     updateAttenion(uid:string){
         this.db.getAttention(uid).valueChanges().subscribe(att=>{
-            this.attention = att;
+            console.log(att);
+            if(att.length >0){
+                console.log("entra")
+                this.attention = att;
+            }
+            console.log(this.attention)
         });
     }
     updateTime(){
@@ -306,7 +319,16 @@ export class ProfileComponent implements OnInit {
               close: $('#close6').val(),
               work: this.attention[6].work
             }
-            ]);
+            ]).then(()=>{
+                if(this.shop.status != 'approved' && this.shop.status != 'showed'){
+                    $('#m_user_profile_tab_2').removeClass('active');
+                    $('#tab2Ref').removeClass('active');
+                    $('#m_user_profile_tab_3').addClass('active');
+                    $('#tab3Ref').addClass('active');
+                    window.scrollTo(0, 0);
+                    this.loadMap(true);
+                }
+            });
     }
     changeCenter($event){
         this.lat =$event.lat;
@@ -314,7 +336,14 @@ export class ProfileComponent implements OnInit {
       }
       setLocation(){
         console.log("click");
-        this.db.setLocation(this.uid, this.lat, this.lng);
+        this.db.setLocation(this.uid, this.lat, this.lng).then(()=>{
+            if(this.shop.status != 'approved' && this.shop.status != 'showed'){
+                this.db.setStatus(this.uid, 'inRevision').then(()=>{
+                    this.router.navigate(['/index'])
+                });
+
+            }
+        });
       }
       loadMap(load: boolean){
         this.load = load;

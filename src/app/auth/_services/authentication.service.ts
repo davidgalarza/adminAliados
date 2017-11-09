@@ -30,5 +30,7 @@ export class AuthenticationService {
     getUser() {
         return this.auth.auth.currentUser;
     }
-    
+    createAccount(userData: any){
+        return this.auth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
+    }
 }

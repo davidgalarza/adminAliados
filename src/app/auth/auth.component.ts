@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRe
 import { ActivatedRoute, Router } from "@angular/router";
 import { ScriptLoaderService } from "../_services/script-loader.service";
 import { AuthenticationService } from "./_services/authentication.service";
+import { DatabaseService } from '../database/database.service';
 import { AlertService } from "./_services/alert.service";
 import { UserService } from "./_services/user.service";
 import { AlertComponent } from "./_directives/alert.component";
@@ -18,6 +19,12 @@ export class AuthComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+    cities: Array<any>;
+    selectedCity: any;
+    selectedCityId: number;
+    categories: Array<any> = [];
+    selectedCategory: string;
+    commerceName: string = '';
 
     @ViewChild('alertSignin', { read: ViewContainerRef }) alertSignin: ViewContainerRef;
     @ViewChild('alertSignup', { read: ViewContainerRef }) alertSignup: ViewContainerRef;
@@ -29,7 +36,14 @@ export class AuthComponent implements OnInit {
         private _route: ActivatedRoute,
         private _authService: AuthenticationService,
         private _alertService: AlertService,
-        private cfr: ComponentFactoryResolver) {
+        private cfr: ComponentFactoryResolver,
+        private db: DatabaseService) {
+
+            this.db.getCities().subscribe(ss=>{
+                this.cities = ss;
+                console.log(this.cities);
+            });
+
     }
 
     ngOnInit() {
@@ -65,6 +79,20 @@ export class AuthComponent implements OnInit {
 
     signup() {
         this.loading = true;
+        this._authService.createAccount(this.model).then(user=>{
+            console.log(user.uid);
+            this.db.createCommerce(user.uid, this.model.commerceName, this.selectedCategory, this.selectedCity.key).then(()=>{
+                this.loading = false;
+                this.showAlert('alertSignin');
+                this._alertService.success('Gracias por completar tu registro', true);
+
+            }).catch(err=>{
+                this.showAlert('alertSignup');
+                this._alertService.error(err);
+                this.loading = false;
+            });
+        })
+        /*
         this._userService.create(this.model)
             .subscribe(
             data => {
@@ -78,7 +106,7 @@ export class AuthComponent implements OnInit {
                 this.showAlert('alertSignup');
                 this._alertService.error(error);
                 this.loading = false;
-            });
+            });*/
     }
 
     forgotPass() {
@@ -102,4 +130,14 @@ export class AuthComponent implements OnInit {
         let ref = this[target].createComponent(factory);
         ref.changeDetectorRef.detectChanges();
     }
+    onChange(value){
+        console.log(value);
+    console.log(typeof value);
+    this.categories = [];
+            this.selectedCity = this.cities[value];
+            Object.values(this.selectedCity.payload.val().categories).forEach(category => {
+                this.categories.push({name: category.display_name, id: category.name});
+            });
+    }
+
 }

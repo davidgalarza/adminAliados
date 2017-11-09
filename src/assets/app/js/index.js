@@ -33,4 +33,3 @@ new Chart($("#m_chart_sales_stats"), {
         }
     }
 });
-console.log("In file", JSON.parse(localStorage.getItem('salesPerMonth')));

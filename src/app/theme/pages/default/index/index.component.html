@@ -7,14 +7,14 @@
 			</h3>
 		</div>
 		<div>
-			
-				<span class="m-switch m-switch--success">
-						<label>
-							<input type="checkbox" checked="checked" name="active" [(ngModel)]="active" (click)="changeState()">
-							<span></span>
-						</label>
-					</span>
-		
+
+			<span class="m-switch m-switch--success">
+				<label>
+					<input type="checkbox" checked="checked" name="active" [(ngModel)]="active" (click)="changeState()">
+					<span></span>
+				</label>
+			</span>
+
 		</div>
 	</div>
 </div>
@@ -22,133 +22,136 @@
 <div class="m-content">
 	<!--Begin::Main Portlet-->
 	<div class="row">
-			<div class="col-xl-12">
-				<!--begin:: Widgets/Sales Stats-->
-				<div class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
-					<div class="m-portlet__head">
-						<div class="m-portlet__head-caption">
-							<div class="m-portlet__head-title">
-								<h3 class="m-portlet__head-text">
-									Estadisticas de ventas
-								</h3>
-							</div>
-						</div>
-						<div class="m-portlet__head-tools">
-							<ul class="m-portlet__nav">
-								<li class="m-portlet__nav-item m-portlet__nav-item--last m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-									<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-										<i class="fa fa-genderless m--font-brand"></i>
-									</a>
-									<div class="m-dropdown__wrapper">
-										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-										<div class="m-dropdown__inner">
-											<div class="m-dropdown__body">
-												<div class="m-dropdown__content">
-													<ul class="m-nav">
-														<li class="m-nav__section m-nav__section--first">
-															<span class="m-nav__section-text">
-																Quick Actions
-															</span>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-share"></i>
-																<span class="m-nav__link-text">
-																	Activity
-																</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-chat-1"></i>
-																<span class="m-nav__link-text">
-																	Messages
-																</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-info"></i>
-																<span class="m-nav__link-text">
-																	FAQ
-																</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																<span class="m-nav__link-text">
-																	Support
-																</span>
-															</a>
-														</li>
-														<li class="m-nav__separator m-nav__separator--fit"></li>
-														<li class="m-nav__item">
-															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-																Cancel
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
+		<div class="col-xl-12">
+			<!--begin:: Widgets/Sales Stats-->
+			<div *ngIf="shop.status == 'showed' && totalSales > 0" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<h3 class="m-portlet__head-text">
+								Estadisticas de ventas
+							</h3>
 						</div>
 					</div>
-					<div class="m-portlet__body">
-						<!--begin::Widget 6-->
-						<div class="m-widget15">
-							<div class="m-widget15__chart" style="height:180px;">
-								<canvas  id="m_chart_sales_stats"></canvas>
-							</div>
-							<div class="m-widget15__items">
-								<div class="row">
-									<div class="col">
-										<div class="m-widget15__item">
-											<span class="m-widget15__stats">
-												{{earnsGrowth}}%
-											</span>
-											<span class="m-widget15__text">
-												Crecimiento en ganancias
-											</span>
-											<div class="m--space-10"></div>
-											<div class="progress m-progress--sm">
-												<div class="progress-bar bg-danger" role="progressbar" [style.width] = "earnMonth + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="m-widget15__item">
-											<span class="m-widget15__stats">
-												{{ordersGrowth}}%
-											</span>
-											<span class="m-widget15__text">
-												Crecimiento en pedidos
-											</span>
-											<div class="m--space-10"></div>
-											<div class="progress m-progress--sm">
-												<div class="progress-bar bg-warning" role="progressbar" [style.width] = "ordersGrowth + '%'" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+					<div class="m-portlet__head-tools">
+						<ul class="m-portlet__nav">
+							<li class="m-portlet__nav-item m-portlet__nav-item--last m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+							 data-dropdown-toggle="hover">
+								<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+									<i class="fa fa-genderless m--font-brand"></i>
+								</a>
+								<div class="m-dropdown__wrapper">
+									<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+									<div class="m-dropdown__inner">
+										<div class="m-dropdown__body">
+											<div class="m-dropdown__content">
+												<ul class="m-nav">
+													<li class="m-nav__section m-nav__section--first">
+														<span class="m-nav__section-text">
+															Quick Actions
+														</span>
+													</li>
+													<li class="m-nav__item">
+														<a href="" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-share"></i>
+															<span class="m-nav__link-text">
+																Activity
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__item">
+														<a href="" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-chat-1"></i>
+															<span class="m-nav__link-text">
+																Messages
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__item">
+														<a href="" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-info"></i>
+															<span class="m-nav__link-text">
+																FAQ
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__item">
+														<a href="" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+															<span class="m-nav__link-text">
+																Support
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__separator m-nav__separator--fit"></li>
+													<li class="m-nav__item">
+														<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+															Cancel
+														</a>
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="m-widget15__desc">
-								* comparado con el mes anterior
-							</div>
-						</div>
-						<!--end::Widget 6-->
+							</li>
+						</ul>
 					</div>
 				</div>
-				<!--end:: Widgets/Sales Stats-->
+				<div class="m-portlet__body">
+					<!--begin::Widget 6-->
+					<div class="m-widget15">
+						<div class="m-widget15__chart" style="height:180px;">
+							<canvas id="m_chart_sales_stats"></canvas>
+						</div>
+						<div class="m-widget15__items">
+							<div class="row">
+								<div class="col">
+									<div class="m-widget15__item">
+										<span class="m-widget15__stats">
+											{{earnsGrowth}}%
+										</span>
+										<span class="m-widget15__text">
+											Crecimiento en ganancias
+										</span>
+										<div class="m--space-10"></div>
+										<div class="progress m-progress--sm">
+											<div class="progress-bar bg-danger" role="progressbar" [style.width]="earnMonth + '%'" aria-valuenow="25" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="m-widget15__item">
+										<span class="m-widget15__stats">
+											{{ordersGrowth}}%
+										</span>
+										<span class="m-widget15__text">
+											Crecimiento en pedidos
+										</span>
+										<div class="m--space-10"></div>
+										<div class="progress m-progress--sm">
+											<div class="progress-bar bg-warning" role="progressbar" [style.width]="ordersGrowth + '%'" aria-valuenow="50" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="m-widget15__desc">
+							* comparado con el mes anterior
+						</div>
+					</div>
+					<!--end::Widget 6-->
+				</div>
 			</div>
-			
+			<!--end:: Widgets/Sales Stats-->
 		</div>
-		<!--End::Main Portlet-->
+
+	</div>
+	<!--End::Main Portlet-->
 	<!--Begin::Main Portlet-->
-	<div class="m-portlet">
+	<div *ngIf="shop.status =='showed' &&  totalSales > 0" class="m-portlet">
 		<div class="m-portlet__body  m-portlet__body--no-padding">
 			<div class="row m-row--no-padding m-row--col-separator-xl">
 				<div class="col-xl-4">
@@ -274,6 +277,161 @@
 		</div>
 	</div>
 	<!--End::Main Portlet-->
+	<div *ngIf="shop.status == 'registered'" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Por favor completa tu perfil
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div class="row">
+				<div class="col-md-6">
+					<img style="max-width: 100%" src="assets/app/media/img/illustrations/writer.gif" alt="writer">
+				</div>
+				<div class="col-md-6">
+					<div style="margin: 6em">
+						<h1>Solo una cosa mas</h1>
+						<p>Danos un poco mas de informacion acerca de ti y tu negocio, para poder entender mejor a lo que te dedicas y con quien
+							trabajaremos.
+						</p>
+						<p>Tranquilo! Son pocos datos
+						</p>
+						<button routerLink="/profile" type="button" class="btn m-btn--pill m-btn--air         btn-success">
+							Completar mi perfil
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="shop.status == 'inRevision'" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Estamos revisando tu Información
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div class="row">
+				<div class="col-md-6">
+					<img style="max-width: 100%" src="assets/app/media/img/illustrations/support.gif" alt="writer">
+				</div>
+				<div class="col-md-6">
+					<div style="margin: 6em">
+						<h1>No te preocupes</h1>
+						<p>Estamos revisando y validando los datos proporcionados, el proceso no suele tardar mas de 24h y es posible que nos
+							comuniquemos con tigo en ese periodo.
+						</p>
+						<p>Si tienes dudas ingresa
+						</p>
+						<a class="m-link"  target="_blank" href="http://soporte.blipclub.com">
+							sopopte.blipclub.com
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="shop.status == 'approved'" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Tu solicitud fue aceptada
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div class="row">
+				<div class="col-md-6">
+					<img style="max-width: 100%" src="assets/app/media/img/illustrations/s7-header.png" alt="writer">
+				</div>
+				<div class="col-md-6">
+					<div style="margin: 6em">
+						<h1>Felicidades</h1>
+						<p>Ahora ya puedes empezar a recivir todos los pedidos de tus clientes y nustros usuarios
+						</p>
+						<p>Cuando estes listo para recivir pedidos empezamos.
+						</p>
+						<button (click)="start()" type="button" class="btn m-btn--pill m-btn--air         btn-success">
+							EMPEZAR!
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="shop.status == 'refused'" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Tu solicitud fue rechazada
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div class="row">
+				<div class="col-md-6">
+					<img style="max-width: 100%" src="assets/app/media/img/illustrations/joffrey-baratheon.png" alt="writer">
+				</div>
+				<div class="col-md-6">
+					<div style="margin: 6em">
+						<h1>Tranquilo</h1>
+						<p>Puedes enviar de nuevo tus datos con las correciones solicitadas y volver a aplicar.
+						</p>
+						<p>Siempre hay otra oportinidad.
+						</p>
+						<button routerLink="/profile" type="button" class="btn m-btn--pill m-btn--air         btn-success">
+							Editar mi perfil
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="shop.status == 'showed' && totalSales == 0" class="m-portlet m-portlet--bordered-semi m-portlet--full-height">
+			<div class="m-portlet__head">
+				<div class="m-portlet__head-caption">
+					<div class="m-portlet__head-title">
+						<h3 class="m-portlet__head-text">
+							Ya estas disponible
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="m-portlet__body">
+				<div class="row">
+					<div class="col-md-6">
+						<img style="max-width: 100%" src="assets/app/media/img/illustrations/fivestars.png" alt="writer">
+					</div>
+					<div class="col-md-6">
+						<div style="margin: 6em">
+							<h1>Aun no vendes nada</h1>
+							<p>Recuerda dar a conocer a tus clientes la nueva forma de acceder a tus productos que ofrces, para aumentar tus ventas y ganancias.
+							</p>
+							<p>Descarga nuestra publicidad
+							</p>
+							<a class="m-link" target="_blank" href="http://soporte.blipclub.com/aliados/uso-de-la-marca">
+								Ver guia
+							</a>
+						</div>
 	
-	
+					</div>
+				</div>
+			</div>
+		</div>
 </div>
